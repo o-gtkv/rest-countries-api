@@ -1,0 +1,46 @@
+.container {
+    max-width: 1284px;
+    margin: 0 auto;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.searchInputWrapper {
+    position: relative;
+    width: 30%;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 20px 5px 20px 50px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: var(--box-shadow);
+}
+
+.searchInputIcon {
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1rem;
+}
+
+.selectRegionFilter {
+    padding: 20px 5px;
+    border: none;
+    border-radius: 7px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--accent-color1);
+}
+
+.cardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 60px;
+}
