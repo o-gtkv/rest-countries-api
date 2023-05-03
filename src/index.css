@@ -16,6 +16,26 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
+dd,
+dt {
+  display: inline;
+  margin: 0;
+  line-height: 2;
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin-left: 0.5rem;
+}
+
+dd::after {
+  content: "";
+  display: block;
+}
+
 .container {
   max-width: 1284px;
   margin: 0 auto;

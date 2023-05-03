@@ -4,10 +4,13 @@
   overflow: hidden;
 }
 
+.imageWrapper {
+  height: 150px;
+}
+
 .image {
   width: 100%;
-  height: auto;
-  /* height: 200px; */
+  height: 100%;
 }
 
 .infoBlock {

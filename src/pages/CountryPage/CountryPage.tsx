@@ -11,10 +11,17 @@ export default function CountryPage() {
     if (isLoading)
         return <LoadingIndicator />
     if (isError)
-        return <div>error</div>
+        return <div>{error}</div>
 
     const country = data[0]
-    console.log(country)
+    const nativeName = Object.values(country.name.nativeName).map((name: any) => name.official).join(', ')
+    const currencies = Object.values(country.currencies).map((curr: any) => curr.name).join(', ')
+    const languages = Object.values(country.languages).join(', ')
+    // const borderCountries = country.borders.map((borderCountry: string) => {
+    //     const [data] = useFetch(`https://restcountries.com/v3.1/alpha/${borderCountry}`)
+    //     console.log(data)
+    //     return 'data'
+    // })
 
     return (
         <div className="container">
@@ -27,37 +34,39 @@ export default function CountryPage() {
                 </div>
                 <div className={style.infoBlock}>
                     <h2>{country.name.common}</h2>
-                    <div className={style.infoListWrapper}>
-                        <ul className={style.infoList}>
-                            <li>
-                                <span>Native name: </span> {
-                                    Object.values(country.name.nativeName)
-                                        .map(name => name.official)
-                                        .join(', ')
-                                }
-                            </li>
-                            <li><span>Population: </span> {country.population}</li>
-                            <li><span>Region: </span> {country.region}</li>
-                            <li><span>Sub Region: </span> {country.subregion}</li>
-                            <li><span>Capital: </span> {country.capital[0]}</li>
-                        </ul>
-                        <ul className={style.infoList}>
-                            <li><span>Top Level Domain: </span> {country.tld[0]}</li>
-                            <li>
-                                <span>Currencies: </span> {
-                                    Object.values(country.currencies)
-                                        .map(curr => curr.name)
-                                        .join(', ')
-                                }
-                            </li>
-                            <li>
-                                <span>Languages: </span> {
-                                    Object.values(country.languages)
-                                        .join(', ')
-                                }
-                            </li>
-                        </ul>
+                    <div className={style.flexContainer}>
+                        <dl>
+                            <dt>Native name:</dt>
+                            <dd>{nativeName}</dd>
+                            <dt>Population:</dt>
+                            <dd>{country.population}</dd>
+                            <dt>Region:</dt>
+                            <dd>{country.region}</dd>
+                            <dt>Sub Region:</dt>
+                            <dd>{country.subregion}</dd>
+                            <dt>Capital:</dt>
+                            <dd>{country.capital[0]}</dd>
+                        </dl>
+                        <dl>
+                            <dt>Top Level Domain:</dt>
+                            <dd>{country.tld[0]}</dd>
+                            <dt>Currencies:</dt>
+                            <dd>{currencies}</dd>
+                            <dt>Languages:</dt>
+                            <dd>{languages}</dd>
+                        </dl>
                     </div>
+                    <dl>
+                        <dt>Border Countries: </dt>
+                        <dd>
+                            <ul className={style.borderCountriesList}>
+                                <li>France</li>
+                                <li>Germany</li>
+                                <li>Lorem ipsum dolor</li>
+                                <li>Lorem ipsum dolor</li>
+                            </ul>
+                        </dd>
+                    </dl>
                 </div>
             </div>
         </div>
