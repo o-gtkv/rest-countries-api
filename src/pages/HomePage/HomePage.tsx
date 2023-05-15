@@ -1,26 +1,25 @@
 import { useMemo, useState } from 'react'
 import { Card, LoadingIndicator } from '../../components'
-import { useFetch } from '../../hooks'
+import { useShortCountryInfo, TShortCountryInfo } from '../../hooks'
 import iconSearch from '../../assets/images/magnifying-glass.svg'
 import style from './HomePage.module.css'
 
 export default function HomePage(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('')
     const [regionFilterValue, setRegionFilterValue] = useState('All')
-    const [data, isLoading, isError, error] = useFetch(
-        'https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital'
-    )
+    const [countryInfoList, isLoading, isError, error] = useShortCountryInfo()
 
-    const fileteredData = useMemo(() => {
+    const fileteredCountryInfoList = useMemo(() => {
         // filters
-        let filtered = data
+        let filtered = countryInfoList
         if (regionFilterValue !== 'All')
-            filtered = filtered.filter((country: any) => country.region === regionFilterValue)
+            filtered = filtered.filter((countryInfo: TShortCountryInfo) =>
+                countryInfo.region === regionFilterValue)
         // search
         if (!searchQuery)
             return filtered
-        return filtered.filter((country: any) =>
-            country.name.common.toLowerCase().startsWith(searchQuery.toLowerCase())
+        return filtered.filter((countryInfo: TShortCountryInfo) =>
+            countryInfo.name.toLowerCase().startsWith(searchQuery.toLowerCase())
         )
     }, [searchQuery, isLoading, regionFilterValue])
 
@@ -52,15 +51,15 @@ export default function HomePage(): JSX.Element {
             </div>
             <div className={style.cardList}>
                 {
-                    fileteredData.map((country: any) => (
+                    fileteredCountryInfoList.map((countryInfo: TShortCountryInfo) => (
                         <Card
-                            key={country.name.common}
-                            flagImage={country.flags.svg}
-                            flagDesc={country.flags.alt}
-                            name={country.name.common}
-                            population={country.population}
-                            region={country.region}
-                            capital={country.capital} />
+                            key={countryInfo.name}
+                            flagImage={countryInfo.flag.img}
+                            flagDesc={countryInfo.flag.alt}
+                            name={countryInfo.name}
+                            population={countryInfo.population}
+                            region={countryInfo.region}
+                            capital={countryInfo.capital} />
                     ))
                 }
             </div>
