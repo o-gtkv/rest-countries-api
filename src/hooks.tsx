@@ -23,48 +23,49 @@ type TDetailedCountryInfo = {
     borders: string[]
 }
 
-export function useShortCountryInfo()
-    : [TShortCountryInfo[], boolean, boolean, string] {
-    const [countryInfo, setCountryInfo] = useState<TShortCountryInfo[]>([])
+export function useShortCountryInfo(): [TShortCountryInfo[], boolean, boolean, string] {
+    const [countryInfoList, setCountryInfoList] = useState<TShortCountryInfo[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState('')
 
     useEffect(() => {
-        axios.get('https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital')
-            .then(res => {
-                const countryInfoTmp = res.data.map((item: any) => {
+        (async function () {
+            try {
+                const res = await axios.get('https://restcountries.com/v3.1/all?fields=flags,name,population,region,capital')
+                const countryInfoListTmp = res.data.map((countryItem: any) => {
                     return {
-                        name: item.name.common,
-                        flag: { img: item.flags.svg, alt: item.flags.alt },
-                        population: item.population,
-                        region: item.region,
-                        capital: item.capital.join(', ')
+                        name: countryItem.name.common,
+                        flag: { img: countryItem.flags.svg, alt: countryItem.flags.alt },
+                        population: countryItem.population,
+                        region: countryItem.region,
+                        capital: countryItem.capital.join(', ')
                     }
                 })
-                setCountryInfo(countryInfoTmp)
+                setCountryInfoList(countryInfoListTmp)
                 setIsLoading(false)
-            })
-            .catch((e) => {
+            }
+            catch (e: any) {
                 setIsError(true)
                 setError(e.message)
                 setIsLoading(false)
-            })
+            }
+        })()
     }, [])
 
-    return [countryInfo, isLoading, isError, error]
+    return [countryInfoList, isLoading, isError, error]
 }
 
-export function useDetailedCountryInfo(name: string | undefined)
-    : [TDetailedCountryInfo | null, boolean, boolean, string] {
+export function useDetailedCountryInfo(name: string | undefined): [TDetailedCountryInfo | null, boolean, boolean, string] {
     const [countryInfo, setCountryInfo] = useState<TDetailedCountryInfo | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState('')
 
     useEffect(() => {
-        axios.get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
-            .then((res) => {
+        (async function () {
+            try {
+                const res = await axios.get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
                 const country = res.data[0]
                 const data = {
                     name: country.name.common,
@@ -82,33 +83,26 @@ export function useDetailedCountryInfo(name: string | undefined)
                     languages: Object.values(country.languages).join(', '),
                 }
                 if (country.borders) {
-                    const promises = country.borders.map((borderCountry: string) =>
-                        axios.get(`https://restcountries.com/v3.1/alpha/${borderCountry}`))
-                    Promise.all(promises)
-                        .then((res) => {
-                            setCountryInfo({
-                                ...data,
-                                borders: res.map(item => item.data[0].name.common)
-                            })
-                            setIsLoading(false)
-                        })
-                        .catch((e) => {
-                            setIsError(true)
-                            setError(e.message)
-                        })
+                    const promises = country.borders.map((borderCountry: string) => axios.get(`https://restcountries.com/v3.1/alpha/${borderCountry}`))
+                    const res = await Promise.all(promises)
+                    setCountryInfo({
+                        ...data,
+                        borders: res.map(item => item.data[0].name.common)
+                    })
                 }
                 else {
                     setCountryInfo({
                         ...data,
                         borders: []
                     })
-                    setIsLoading(false)
                 }
-            })
-            .catch((e) => {
+                setIsLoading(false)
+            }
+            catch (e: any) {
                 setIsError(true)
                 setError(e.message)
-            })
+            }
+        })()
     }, [name])
 
     return [countryInfo, isLoading, isError, error]
