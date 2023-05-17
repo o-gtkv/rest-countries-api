@@ -107,3 +107,14 @@ export function useDetailedCountryInfo(name: string | undefined): [TDetailedCoun
 
     return [countryInfo, isLoading, isError, error]
 }
+
+// export function useDebounce(newValue: any, delay: number): any {
+//     const [value, setValue] = useState(newValue)
+
+//     useEffect(() => {
+//         const id = setTimeout(() => setValue(newValue), delay)
+//         return () => clearTimeout(id)
+//     }, [newValue, delay])
+
+//     return value
+// }

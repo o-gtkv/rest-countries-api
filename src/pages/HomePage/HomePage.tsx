@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useDeferredValue } from 'react'
 import { Card, LoadingIndicator } from '../../components'
 import { useShortCountryInfo, TShortCountryInfo } from '../../hooks'
 import iconSearch from '../../assets/images/magnifying-glass.svg'
@@ -8,8 +8,10 @@ export default function HomePage(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('')
     const [regionFilterValue, setRegionFilterValue] = useState('All')
     const [countryInfoList, isLoading, isError, error] = useShortCountryInfo()
+    const deferredQuery = useDeferredValue(searchQuery)
 
     const fileteredCountryInfoList = useMemo(() => {
+        console.log('search')
         // filters
         let filtered = countryInfoList
         if (regionFilterValue !== 'All')
@@ -21,7 +23,7 @@ export default function HomePage(): JSX.Element {
         return filtered.filter((countryInfo: TShortCountryInfo) =>
             countryInfo.name.toLowerCase().startsWith(searchQuery.toLowerCase())
         )
-    }, [searchQuery, isLoading, regionFilterValue])
+    }, [deferredQuery, isLoading, regionFilterValue])
 
     if (isLoading)
         return <LoadingIndicator />
