@@ -1,6 +1,12 @@
+@use "../../scss/vars";
+
 .container {
-    max-width: 1284px;
+    max-width: vars.$container-width;
     margin: 0 auto;
+
+    @media screen and (max-width: vars.$container-width) {
+        padding: 0 30px;
+    }
 }
 
 .tools {
@@ -8,11 +14,19 @@
     justify-content: space-between;
     align-items: center;
     margin: 40px 0;
+
+    @media screen and (max-width: vars.$breakpoint2) {
+        display: block;
+    }
 }
 
 .searchInputWrapper {
     position: relative;
     width: 30%;
+
+    @media screen and (max-width: vars.$breakpoint2) {
+        width: auto;
+    }
 }
 
 .searchInput {
@@ -37,10 +51,26 @@
     border-radius: 7px;
     box-shadow: var(--box-shadow);
     background-color: var(--accent-color1);
+
+    @media screen and (max-width: vars.$breakpoint2) {
+        margin-top: 30px;
+    }
 }
 
 .cardList {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 60px;
+
+    @media screen and (max-width: vars.$breakpoint1) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width: vars.$breakpoint2) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: vars.$breakpoint3) {
+        grid-template-columns: 1fr;
+    }
 }

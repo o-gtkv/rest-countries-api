@@ -2,7 +2,7 @@ import { useMemo, useState, useDeferredValue } from 'react'
 import { Card, LoadingIndicator } from '../../components'
 import { useShortCountryInfo, TShortCountryInfo } from '../../hooks'
 import iconSearch from '../../assets/images/magnifying-glass.svg'
-import style from './HomePage.module.css'
+import style from './HomePage.module.scss'
 
 export default function HomePage(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('')

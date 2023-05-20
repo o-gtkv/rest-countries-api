@@ -1,0 +1,88 @@
+@use "../../scss/vars";
+
+.container {
+    max-width: vars.$container-width;
+    margin: 0 auto;
+
+    @media screen and (max-width: vars.$container-width) {
+        padding: 0 15px;
+    }
+}
+
+.pageContent {
+    display: flex;
+    align-items: center;
+    column-gap: 80px;
+
+    @media screen and (max-width: vars.$breakpoint1) {
+        display: block;
+    }
+}
+
+.flagBlock,
+.infoBlock {
+    flex: 1;
+}
+
+.flagImage {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgb(232, 232, 232);
+}
+
+.flexContainer {
+    display: flex;
+    column-gap: 40px;
+
+    @media screen and (max-width: vars.$breakpoint1) {
+        display: block;
+    }
+}
+
+.flexContainer>dl {
+    flex: 1;
+}
+
+.backButtonWrapper {
+    margin: 40px 0;
+}
+
+.backButton {
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    padding: 10px 40px;
+    box-shadow: var(--box-shadow);
+    background-color: var(--accent-color2);
+}
+
+.link {
+    display: block;
+    border-radius: 5px;
+    min-width: 95px;
+    padding: 5px 5px;
+    border: 1px solid #f1f1f1;
+    box-shadow: var(--box-shadow);
+}
+
+.borderCountriesList {
+    display: inline;
+    list-style-type: none;
+    padding: 0;
+    line-height: 1;
+
+    @media screen and (max-width: vars.$breakpoint1) {
+        display: block;
+    }
+}
+
+
+.borderCountriesList>li {
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.borderCountriesList>li+li {
+    margin-left: 0.5rem;
+}

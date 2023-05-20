@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import style from './Card.module.css'
+import style from './Card.module.scss'
 
 type PropTypes = {
     flagImage: string,

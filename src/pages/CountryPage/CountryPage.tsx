@@ -2,7 +2,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { LoadingIndicator } from '../../components'
 import { useDetailedCountryInfo } from '../../hooks'
 
-import style from './CountryPage.module.css'
+import style from './CountryPage.module.scss'
 
 export default function CountryPage() {
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ export default function CountryPage() {
         return <LoadingIndicator />
 
     return (
-        <div className="container">
+        <div className={style.container}>
             <div className={style.backButtonWrapper}>
                 <button className={style.backButton} onClick={() => navigate(-1)}>🡐 Back</button>
             </div>
@@ -56,7 +56,7 @@ export default function CountryPage() {
                                     {
                                         countryInfo?.borders.map((borderCountry: string, idx: number) => (
                                             <li key={idx}>
-                                                <Link to={`/country/${borderCountry.toLowerCase()}`}>{borderCountry}</Link>
+                                                <Link className={style.link} to={`/country/${borderCountry.toLowerCase()}`}>{borderCountry}</Link>
                                             </li>
                                         ))
                                     }

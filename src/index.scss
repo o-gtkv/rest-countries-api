@@ -1,0 +1,42 @@
+:root {
+    --accent-light-color1: #fff;
+    --accent-light-color2: #fafafa;
+    --box-shadow: 0 0 10px gray;
+
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--accent-light-color2);
+    font-family: "Nunito Sans", sans-serif;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+dd,
+dt {
+    display: inline;
+    margin: 0;
+    line-height: 2;
+}
+
+dt {
+    font-weight: 600;
+}
+
+dd {
+    margin-left: 0.5rem;
+}
+
+dd::after {
+    content: "";
+    display: block;
+}

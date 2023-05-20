@@ -1,0 +1,39 @@
+@use "../../scss/vars";
+
+.header {
+    padding: 20px 0;
+    box-shadow: var(--box-shadow);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: vars.$container-width;
+
+    @media screen and (max-width: vars.$container-width) {
+        padding: 0 30px;
+    }
+}
+
+.heading {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.themeSwitcher {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+}
+
+.themeSwitcher>span {
+    margin: 0.5rem;
+}
+
+.themeSwitcher>img {
+    height: 1rem;
+}

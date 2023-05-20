@@ -2,6 +2,12 @@
   border-radius: 7px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  height: 100%;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .imageWrapper {
