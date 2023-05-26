@@ -1,22 +1,20 @@
 import { Link } from 'react-router-dom'
 import style from './Card.module.scss'
 
-type PropTypes = {
-    flagImage: string,
-    flagDesc: string,
-    name: string,
-    population: number,
-    region: string,
-    capital: string,
+type TProps = {
+    flagImage: string
+    flagDesc: string
+    name: string
+    population: number
+    region: string
+    capital: string
 }
 
-export default function Card(props: PropTypes): JSX.Element {
+export default function Card(props: TProps): JSX.Element {
     return (
         <Link className={style.link} to={`/country/${props.name.toLowerCase()}`}>
             <div className={style.card}>
-                <div className={style.imageWrapper}>
-                    <img className={style.image} src={props.flagImage} alt={props.flagDesc} />
-                </div>
+                <img className={style.image} src={props.flagImage} alt={props.flagDesc} />
                 <div className={style.infoBlock}>
                     <h2 className={style.heading} >{props.name}</h2>
                     <ul className={style.infoList}>

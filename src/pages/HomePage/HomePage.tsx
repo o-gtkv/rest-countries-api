@@ -4,17 +4,18 @@ import { useShortCountryInfo, TShortCountryInfo } from '../../hooks'
 import iconSearch from '../../assets/images/magnifying-glass.svg'
 import style from './HomePage.module.scss'
 
+const DEFAULT_FILTER_VALUE = 'All'
+
 export default function HomePage(): JSX.Element {
     const [searchQuery, setSearchQuery] = useState('')
-    const [regionFilterValue, setRegionFilterValue] = useState('All')
+    const [regionFilterValue, setRegionFilterValue] = useState(DEFAULT_FILTER_VALUE)
     const [countryInfoList, isLoading, isError, error] = useShortCountryInfo()
     const deferredQuery = useDeferredValue(searchQuery)
 
     const fileteredCountryInfoList = useMemo(() => {
-        console.log('search')
         // filters
         let filtered = countryInfoList
-        if (regionFilterValue !== 'All')
+        if (regionFilterValue !== DEFAULT_FILTER_VALUE)
             filtered = filtered.filter((countryInfo: TShortCountryInfo) =>
                 countryInfo.region === regionFilterValue)
         // search
@@ -42,8 +43,9 @@ export default function HomePage(): JSX.Element {
                     />
                     <img className={style.searchInputIcon} src={iconSearch} alt="" />
                 </div>
-                <select className={style.selectRegionFilter} defaultValue="All" onChange={(e) => setRegionFilterValue(e.target.value)}>
-                    <option value="All" disabled={true}>Filter by Region</option>
+                <select className={style.selectRegionFilter} defaultValue="" onChange={(e) => setRegionFilterValue(e.target.value)}>
+                    <option value="" disabled={true}>Filter by Region</option>
+                    <option value={DEFAULT_FILTER_VALUE}>All</option>
                     <option value="Africa">Africa</option>
                     <option value="Americas">America</option>
                     <option value="Asia">Asia</option>

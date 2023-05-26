@@ -48,7 +48,7 @@ export default function CountryPage() {
                         </dl>
                     </div>
                     {
-                        countryInfo?.borders && countryInfo.borders.length > 0 &&
+                        countryInfo?.borders &&
                         <dl>
                             <dt>Border Countries: </dt>
                             <dd>

@@ -2,25 +2,20 @@ import axios from 'axios'
 import { useState, useEffect } from "react"
 
 export type TShortCountryInfo = {
-    name: string,
-    flag: { img: string, alt: string },
-    population: number,
-    region: string,
+    name: string
+    flag: { img: string, alt: string }
+    population: number
+    region: string
     capital: string
 }
 
-type TDetailedCountryInfo = {
-    name: string,
-    flag: { img: string, alt: string },
-    nativeName: string,
-    population: string,
-    region: string,
-    subregion: string,
-    capital: string,
-    topLevelDomain: string,
-    currencies: string,
-    languages: string,
-    borders: string[]
+type TDetailedCountryInfo = TShortCountryInfo & {
+    nativeName: string
+    subregion: string
+    topLevelDomain: string
+    currencies: string
+    languages: string
+    borders?: string[]
 }
 
 export function useShortCountryInfo(): [TShortCountryInfo[], boolean, boolean, string] {
@@ -36,7 +31,7 @@ export function useShortCountryInfo(): [TShortCountryInfo[], boolean, boolean, s
                 const countryInfoListTmp = res.data.map((countryItem: any) => {
                     return {
                         name: countryItem.name.common,
-                        flag: { img: countryItem.flags.svg, alt: countryItem.flags.alt },
+                        flag: { img: countryItem.flags.png, alt: countryItem.flags.alt },
                         population: countryItem.population,
                         region: countryItem.region,
                         capital: countryItem.capital.join(', ')
@@ -93,7 +88,6 @@ export function useDetailedCountryInfo(name: string | undefined): [TDetailedCoun
                 else {
                     setCountryInfo({
                         ...data,
-                        borders: []
                     })
                 }
                 setIsLoading(false)
