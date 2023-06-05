@@ -20,20 +20,5 @@
 .heading {
     font-size: 1.5rem;
     margin: 0;
-}
-
-.themeSwitcher {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border: 0;
-    background-color: transparent;
-}
-
-.themeSwitcher>span {
-    margin: 0.5rem;
-}
-
-.themeSwitcher>img {
-    height: 1rem;
+    color: var(--heading-color);
 }

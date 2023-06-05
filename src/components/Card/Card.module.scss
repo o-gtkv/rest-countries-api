@@ -4,6 +4,7 @@
     overflow: hidden;
     transition: transform 0.2s ease-in-out;
     height: 100%;
+    color: var(--card-color);
 
     &:hover {
         transform: scale(1.05);
@@ -20,7 +21,6 @@
 }
 
 .heading {
-    color: black;
     font-size: 1.25rem;
 }
 
@@ -28,7 +28,6 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
-    color: rgba(0, 0, 0, 0.75);
     line-height: 1.5;
 }
 

@@ -1,0 +1,20 @@
+.themeSwitcher {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 0;
+    background-color: transparent;
+    color: var(--theme-swithcer-color);
+
+    &>span {
+        margin: 0.5rem;
+    }
+}
+
+.themeSwitcherIcon {
+    height: 1rem;
+
+    &>path {
+        fill: var(--theme-swithcer-color);
+    }
+}

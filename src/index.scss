@@ -1,9 +1,31 @@
 :root {
-    --accent-light-color1: #fff;
+    --accent-light-color1: white;
     --accent-light-color2: #fafafa;
+    --card-color: black;
+    --filter-color: black;
+    --search-input-color: black;
+    --heading-color: black;
+    --back-button-color: black;
+    --fullinfo-block-color: black;
+    --borders-link-color: black;
+    --theme-swithcer-color: black;
     --box-shadow: 0 0 10px gray;
 
     font-size: 16px;
+}
+
+.theme-dark {
+    --accent-light-color1: #2b3743;
+    --accent-light-color2: #202d36;
+    --card-color: white;
+    --filter-color: white;
+    --search-input-color: white;
+    --heading-color: white;
+    --back-button-color: white;
+    --fullinfo-block-color: white;
+    --borders-link-color: white;
+    --theme-swithcer-color: white;
+    --box-shadow: 0 0 10px black;
 }
 
 * {

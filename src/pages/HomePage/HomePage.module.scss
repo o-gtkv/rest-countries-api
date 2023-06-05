@@ -35,6 +35,8 @@
     border: none;
     border-radius: 7px;
     box-shadow: var(--box-shadow);
+    background-color: var(--accent-color1);
+    color: var(--search-input-color);
 }
 
 .searchInputIcon {
@@ -45,15 +47,24 @@
     width: 1rem;
 }
 
+.searchInputIcon>path {
+    fill: var(--search-input-color);
+}
+
 .selectRegionFilter {
     padding: 20px 5px;
     border: none;
     border-radius: 7px;
     box-shadow: var(--box-shadow);
     background-color: var(--accent-color1);
+    color: var(--filter-color);
 
     @media screen and (max-width: vars.$breakpoint2) {
         margin-top: 30px;
+    }
+
+    &>option:not(:first-child) {
+        color: black;
     }
 }
 
