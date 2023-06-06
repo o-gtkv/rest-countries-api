@@ -47,7 +47,7 @@ dd,
 dt {
     display: inline;
     margin: 0;
-    line-height: 2;
+    line-height: 1.5;
 }
 
 dt {
@@ -61,4 +61,17 @@ dd {
 dd::after {
     content: "";
     display: block;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
 }

@@ -17,11 +17,14 @@ export default function Card(props: TProps): JSX.Element {
                 <img className={style.image} src={props.flagImage} alt={props.flagDesc} />
                 <div className={style.infoBlock}>
                     <h2 className={style.heading} >{props.name}</h2>
-                    <ul className={style.infoList}>
-                        <li><span>Population: </span> {props.population}</li>
-                        <li><span>Region: </span> {props.region}</li>
-                        <li><span>Capital: </span> {props.capital}</li>
-                    </ul>
+                    <dl>
+                        <dt>Population:</dt>
+                        <dd>{props.population}</dd>
+                        <dt>Region:</dt>
+                        <dd>{props.region}</dd>
+                        <dt>Capital:</dt>
+                        <dd>{props.capital}</dd>
+                    </dl>
                 </div>
             </div>
         </Link>
